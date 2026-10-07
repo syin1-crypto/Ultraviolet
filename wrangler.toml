@@ -1,6 +1,5 @@
 name = "ultraviolet2"
-main = "worker_bridge.js"
-compatibility_date = "2024-01-01"
+main = "src/index.js" # O el archivo principal .js que use tu proyecto
 
 [assets]
 directory = "./dist"
