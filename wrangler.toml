@@ -1,5 +1,5 @@
 name = "ultraviolet2"
-main = "src/index.js" # O el archivo principal .js que use tu proyecto
+main = "dist/uv.sw.js"
 
 [assets]
 directory = "./dist"
