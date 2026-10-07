@@ -26,9 +26,11 @@ let builder = await build({
 		"uv.handler": "./src/uv.handler.js",
 		"uv.sw": "./src/uv.sw.js",
 	},
+	// SOLUCIÓN DEFINITIVA: Inyecta la simulación de forma segura al inicio del archivo generado
+	banner: {
+		js: "if(typeof MessagePort === 'undefined'){ globalThis.MessagePort = class { static get prototype() { return {}; } }; }"
+	},
 	define: {
-		// PARCHE AVANZADO: Simula el objeto MessagePort del navegador con un prototipo seguro para pasar el test 10021 de Cloudflare
-		"MessagePort": "class { static get prototype() { return {}; } }",
 		"process.env.ULTRAVIOLET_VERSION": JSON.stringify(
 			process.env.ULTRAVIOLET_VERSION
 		),
