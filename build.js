@@ -27,7 +27,8 @@ let builder = await build({
 		"uv.sw": "./src/uv.sw.js",
 	},
 	define: {
-		"MessagePort": "undefined", // PARCHE: Evita el error 10021 en Cloudflare Workers
+		// PARCHE AVANZADO: Simula el objeto MessagePort del navegador con un prototipo seguro para pasar el test 10021 de Cloudflare
+		"MessagePort": "class { static get prototype() { return {}; } }",
 		"process.env.ULTRAVIOLET_VERSION": JSON.stringify(
 			process.env.ULTRAVIOLET_VERSION
 		),
