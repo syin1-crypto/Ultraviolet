@@ -26,9 +26,9 @@ let builder = await build({
 		"uv.handler": "./src/uv.handler.js",
 		"uv.sw": "./src/uv.sw.js",
 	},
-	// SOLUCIÓN DEFINITIVA: Inyecta la simulación de forma segura al inicio del archivo generado
+	// SIMULACIÓN COMPATIBLE: Crea una estructura tradicional para MessagePort sin violar las palabras reservadas de JavaScript
 	banner: {
-		js: "if(typeof MessagePort === 'undefined'){ globalThis.MessagePort = class { static get prototype() { return {}; } }; }"
+		js: "if(typeof MessagePort === 'undefined'){ function MPFake(){} MPFake.prototype = {}; globalThis.MessagePort = MPFake; }"
 	},
 	define: {
 		"process.env.ULTRAVIOLET_VERSION": JSON.stringify(
