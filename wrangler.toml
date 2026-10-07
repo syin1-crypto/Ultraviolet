@@ -1,4 +1,4 @@
-name = "ultraviolet2"
+name = "ejercicios-mates"
 main = "worker_bridge.js"
 compatibility_date = "2024-01-01"
 
