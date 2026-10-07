@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.js --bundle --minify --platform=browser --outfile=dist/index.js"
+    "build": "node build.js"
   },
   "dependencies": {
     "@mercuryworkshop/bare-mux": "^2.1.6",
