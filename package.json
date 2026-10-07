@@ -4,8 +4,12 @@
   "description": "An advanced web proxy used for evading internet censorship.",
   "main": "src/index.js",
   "type": "module",
+  "packageManager": "npm@10.8.2",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
-    "preinstall": "npx force-npm || echo 'Forzing NPM'",
     "build": "esbuild src/index.js --bundle --minify --platform=browser --outfile=dist/index.js"
   },
   "dependencies": {
