@@ -1,0 +1,70 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+  .:
+    dependencies:
+      '@mercuryworkshop/bare-mux':
+        specifier: ^2.1.6
+        version: 2.1.6
+      astring:
+        specifier: ^1.9.0
+        version: 1.9.0
+      events:
+        specifier: ^3.3.0
+        version: 3.3.0
+      idb:
+        specifier: ^8.0.0
+        version: 8.0.0
+      meriyah:
+        specifier: ^6.0.2
+        version: 6.0.2
+      parse5:
+        specifier: ^7.2.0
+        version: 7.2.0
+      set-cookie-parser:
+        specifier: ^2.7.1
+        version: 2.7.1
+    devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3.1.0
+        version: 3.1.0
+      '@eslint/js':
+        specifier: ^9.13.0
+        version: 9.13.0
+      esbuild:
+        specifier: ^0.24.0
+        version: 0.24.0
+      eslint:
+        specifier: ^9.13.0
+        version: 9.13.0
+      globals:
+        specifier: ^15.11.0
+        version: 15.11.0
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
+
+packages:
+  '@mercuryworkshop/bare-mux@2.1.6':
+    resolution: {integrity: sha512-v9EAt6wVkaK/YfS99Y4LOfZfhyvLpWvUduU6zXyR8/GvY7uYvI5E8B1S8SveLxpU60z+0oT28O1Sfp3fWpXfWg==}
+  astring@1.9.0:
+    resolution: {integrity: sha512-CHAxUaz9gVMvFmThYfQj6y8D879YwP689Z8E8TuxXoNuAnA97idg670O89R9O8Z9X69OOfW4v9gH6Jc3G9fDlw==}
+  events@3.3.0:
+    resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtIs4Gs0n93CBq27XYF0Y8WRnhWBCkhSgCoDKmW22FwZ0CO9f8GQDmVuk6Q==}
+  esbuild@0.24.0:
+    resolution: {integrity: sha512-7su0g9uRjggN8qCbaDloX5u8gM6HIsS0Z8Bq8mYm6Z4wP1uY+N8yM3n6T80oDtwHl77LlwEw9a09wObeEIkdw==}
+  idb@8.0.0:
+    resolution: {integrity: sha512-YLe9V76bI/gGSu9E3bXwWfPby0L0X0Z7GjFid0s/T8Aym68/38jWzT8qjW88X195gA6S3Bww7M0LlzD8O89Tkw==}
+  meriyah@6.0.2:
+    resolution: {integrity: sha512-7Ois96X6uM7+7/dG0B9+Icl9An9VfC8Z+1N/Y8NAsg3W6yNWeG7fHuyNIdz94w/R96Y0O8L2b2w+19YgMvNw==}
+  parse5@7.2.0:
+    resolution: {integrity: sha512-Z68CDZ7N3bH6E3B8PzM6uW2N5EwE2O3mO3N8g5x4M0O2Wp3X1K7W4oVvE7k8m1B7YwE5G4D2b5O1E7B9Y6pQ==}
+  set-cookie-parser@2.7.1:
+    resolution: {integrity: sha512-IOcUmC26FmOqd675w6H6F684VCOt1stnSg67f8YwU3u1W36mN3RpxwMh8wW6nC6U9kC2S8v5T2nU0C2K9Ew==}
