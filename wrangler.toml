@@ -1,7 +1,0 @@
-name = "ultraviolet2"
-main = "dist/uv.sw.js"
-compatibility_date = "2026-10-06"
-
-[assets]
-directory = "./dist"
-binding = "ASSETS"
