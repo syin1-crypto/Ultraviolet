@@ -1,16 +1,78 @@
-export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-    
-    // Sirve los archivos estáticos de tu carpeta dist (como uv.bundle.js, etc.)
-    let response = await env.ASSETS.fetch(request);
-    
-    // Si la ruta no existe (un error 404), fuerza la carga del index.html principal
-    if (response.status === 404) {
-      const indexRequest = new Request(new URL('/index.html', url.origin), request);
-      response = await env.ASSETS.fetch(indexRequest);
-    }
-    
-    return response;
-  },
-};
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Servidor Ultraviolet</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            padding: 50px 20px; 
+            background-color: #121212; 
+            color: white; 
+        }
+        h1 { color: #ff6600; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #aaaaaa; margin-bottom: 30px; }
+        .search-container { max-width: 600px; margin: 0 auto; }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 30px;
+            background-color: #1a1a1a;
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus { border-color: #ff6600; }
+    </style>
+    <!-- Cargamos los scripts principales de Ultraviolet que ya tienes en el servidor -->
+    <script src="/uv/uv.bundle.js" defer></script>
+    <script src="/uv/uv.config.js" defer></script>
+</head>
+<body>
+
+    <h1>¡Ultraviolet Desplegado con Éxito!</h1>
+    <p>Introduce una URL o término de búsqueda para navegar de forma libre:</p>
+
+    <div class="search-container">
+        <form id="uv-form">
+            <input id="uv-address" type="text" placeholder="Escribe una dirección web (ej: google.com) o busca algo..." autocomplete="off">
+        </form>
+    </div>
+
+    <script>
+        // Lógica para interceptar la búsqueda y procesarla con tu proxy
+        window.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('uv-form');
+            const address = document.getElementById('uv-address');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Registramos el Service Worker de Ultraviolet antes de redirigir
+                if ('serviceWorker' in navigator) {
+                    await navigator.serviceWorker.register('/uv.sw.js', {
+                        scope: __uv$config.prefix
+                    });
+                }
+
+                let url = address.value.trim();
+                
+                // Si no tiene formato de URL, lo busca directamente en Google
+                if (!url.includes('.') || url.includes(' ')) {
+                    url = 'https://google.com' + encodeURIComponent(url);
+                } else if (!/^https?:\/\//i.test(url)) {
+                    url = 'https://' + url;
+                }
+
+                // Redirige la pestaña a través de tu proxy en Cloudflare
+                window.location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
+            });
+        });
+    </script>
+</body>
+</html>
