@@ -1,7 +1,10 @@
 {
   "name": "ultraviolet2",
-  "compatibility_date": "2026-10-07",
+  "main": "src/uv.sw.js",
   "compatibility_flags": [
     "nodejs_compat"
-  ]
+  ],
+  "assets": {
+    "directory": "./dist"
+  }
 }
