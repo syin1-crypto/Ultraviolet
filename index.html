@@ -29,18 +29,17 @@
         }
         input[type="text"]:focus { border-color: #ff6600; }
     </style>
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
-
+    <script src="uv.bundle.js" onerror="this.src='/dist/uv.bundle.js'" defer></script>
+    <script src="uv.config.js" onerror="this.src='/dist/uv.config.js'" defer></script>
 </head>
 <body>
 
     <h1>¡Ultraviolet Desplegado con Éxito!</h1>
-    <p>Introduce una URL o término de búsqueda para navegar de forma libre:</p>
+    <p>Introduce una URL para navegar de forma libre (ej: medal.tv):</p>
 
     <div class="search-container">
         <form id="uv-form">
-            <input id="uv-address" type="text" placeholder="Escribe una dirección web (ej: google.com) o busca algo..." autocomplete="off">
+            <input id="uv-address" type="text" placeholder="Escribe una dirección web y pulsa Enter..." autocomplete="off">
         </form>
     </div>
 
@@ -53,13 +52,18 @@
                 e.preventDefault();
                 
                 if ('serviceWorker' in navigator) {
-                    await navigator.serviceWorker.register('/uv.sw.js', {
-                        scope: __uv$config.prefix
-                    });
+                    try {
+                        await navigator.serviceWorker.register('uv.sw.js', { scope: __uv$config.prefix });
+                    } catch(err) {
+                        try {
+                            await navigator.serviceWorker.register('/dist/uv.sw.js', { scope: __uv$config.prefix });
+                        } catch(e2) {
+                            console.error("No se pudo registrar", e2);
+                        }
+                    }
                 }
 
                 let url = address.value.trim();
-                
                 if (!url.includes('.') || url.includes(' ')) {
                     url = 'https://google.com' + encodeURIComponent(url);
                 } else if (!/^https?:\/\//i.test(url)) {
